@@ -1,0 +1,3 @@
+tasks:
+  - init: cargo install --path . --force
+    command: xtext
