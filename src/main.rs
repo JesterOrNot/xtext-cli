@@ -3,7 +3,7 @@ use structopt::StructOpt;
 #[derive(StructOpt)]
 struct Cli {
     #[structopt(subcommand)]
-    cmd: Option<Command>,
+    cmd: Command,
 }
 
 #[derive(StructOpt)]
@@ -16,10 +16,8 @@ enum Command {
 fn main() {
     let args = Cli::from_args();
     match args.cmd {
-        Some(n) => match n {
-            Command::Init => println!("WIP"),
-            _ => {}
-        },
-        None => {}
+        Command::Init => println!("WIP"),
+        Command::Build => println!("WIP"),
+        Command::Run => println!("WIP")
     }
 }
