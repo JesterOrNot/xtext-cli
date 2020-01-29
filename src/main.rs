@@ -15,7 +15,8 @@ enum Command {
     Build,
     New {
         #[structopt(parse(from_os_str))]
-        file: PathBuf
+        directory: PathBuf,
+        dsl_extension: Option<String>
     },
 }
 
@@ -25,7 +26,11 @@ fn main() {
         Command::Init => println!("WIP"),
         Command::Build => println!("WIP"),
         Command::Run => println!("WIP"),
-        Command::New {file: n} => {
+        Command::New {directory: n, dsl_extension: _m} => {
+            let dsl_extension = match _m {
+                Some(n) => String::from(".") + n.as_str(),
+                None => String::from(".mydsl")
+            };
             let option = create_dir(n);
             match option {
                 Ok(()) => {},
