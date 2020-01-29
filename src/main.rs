@@ -2,7 +2,6 @@ use structopt::StructOpt;
 
 #[derive(StructOpt)]
 struct Cli {
-    #[allow(dead_code)]
     #[structopt(subcommand)]
     cmd: Option<Command>,
 }
