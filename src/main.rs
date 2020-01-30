@@ -1,6 +1,6 @@
+use std::fs::create_dir;
 use std::path::PathBuf;
 use structopt::StructOpt;
-use std::fs::create_dir;
 
 #[derive(StructOpt)]
 struct Cli {
@@ -16,7 +16,8 @@ enum Command {
     New {
         #[structopt(parse(from_os_str))]
         directory: PathBuf,
-        dsl_extension: Option<String>
+        package_name: Option<String>,
+        dsl_extension: Option<String>,
     },
 }
 
@@ -26,16 +27,30 @@ fn main() {
         Command::Init => println!("WIP"),
         Command::Build => println!("WIP"),
         Command::Run => println!("WIP"),
-        Command::New {directory: n, dsl_extension: _m} => {
-            let dsl_extension = match _m {
+        Command::New {
+            directory: n,
+            package_name: f,
+            dsl_extension: m,
+        } => {
+            let dsl_extension = match m {
                 Some(n) => String::from(".") + n.as_str(),
-                None => String::from(".mydsl")
+                None => String::from(".mydsl"),
             };
-            let option = create_dir(n);
+            let projectName = match f {
+                Some(f) => f,
+                None => String::from("org.xtext.example.mydsl"),
+            };
+            let option = create_dir(&n);
+
             match option {
-                Ok(()) => {},
+                Ok(()) => {}
                 Err(_n) => println!("\x1b[1;31mError:\x1b[0m directory already exists"),
             }
+            create_dir(&n.join(&projectName)).unwrap();
+            create_dir(&n.join(projectName.to_owned() + &String::from(".ide"))).unwrap();
+            create_dir(&n.join(projectName.to_owned() + &String::from(".tests"))).unwrap();
+            create_dir(&n.join(projectName.to_owned() + &String::from(".ui"))).unwrap();
+            create_dir(&n.join(projectName.to_owned() + &String::from(".ui.tests"))).unwrap();
             return;
         }
     }
