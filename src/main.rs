@@ -44,13 +44,79 @@ fn main() {
 
             match option {
                 Ok(()) => {}
-                Err(_n) => println!("\x1b[1;31mError:\x1b[0m directory already exists"),
+                Err(_n) => {
+                    println!("\x1b[1;31mError:\x1b[0m directory already exists");
+                    return;
+                }
             }
             create_dir(&n.join(&project_name)).unwrap();
+            create_dir(&n.join(&project_name).join("src")).unwrap();
+            create_dir(&n.join(&project_name).join("src-gen")).unwrap();
+            create_dir(&n.join(&project_name).join("xtend-gen")).unwrap();
             create_dir(&n.join(project_name.to_owned() + &String::from(".ide"))).unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ide"))
+                    .join("src"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ide"))
+                    .join("src-gen"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ide"))
+                    .join("xtend-gen"),
+            )
+            .unwrap();
             create_dir(&n.join(project_name.to_owned() + &String::from(".tests"))).unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".tests"))
+                    .join("src"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".tests"))
+                    .join("src-gen"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".tests"))
+                    .join("xtend-gen"),
+            )
+            .unwrap();
             create_dir(&n.join(project_name.to_owned() + &String::from(".ui"))).unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui"))
+                    .join("src"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui"))
+                    .join("src-gen"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui"))
+                    .join("xtend-gen"),
+            )
+            .unwrap();
             create_dir(&n.join(project_name.to_owned() + &String::from(".ui.tests"))).unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui.tests"))
+                    .join("src"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui.tests"))
+                    .join("src-gen"),
+            )
+            .unwrap();
+            create_dir(
+                &n.join(project_name.to_owned() + &String::from(".ui.tests"))
+                    .join("xtend-gen"),
+            )
+            .unwrap();
             return;
         }
     }
