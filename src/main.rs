@@ -1,6 +1,6 @@
 use std::fs::create_dir;
-use std::path::PathBuf;
 use std::fs::File;
+use std::path::PathBuf;
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -118,7 +118,15 @@ fn main() {
                     .join("xtend-gen"),
             )
             .unwrap();
-            let mut file = File::create(n.to_str().unwrap().to_string() + &String::from("/") + &project_name.to_string()+&String::from("/src/")+&String::from(&dsl_extension[1..])+&String::from(".xtext")).unwrap();
+            let mut file = File::create(
+                n.to_str().unwrap().to_string()
+                    + &String::from("/")
+                    + &project_name.to_string()
+                    + &String::from("/src/")
+                    + &String::from(&dsl_extension[1..])
+                    + &String::from(".xtext"),
+            )
+            .unwrap();
             return;
         }
     }
